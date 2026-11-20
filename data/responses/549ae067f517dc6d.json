@@ -1,7 +1,7 @@
 {
-  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "source": "openai:gpt-6-luna",
   "first_line": "ОРЫНДАЛҒАН ЖҰМЫСТАР АКТІСІ / АКТ ВЫПОЛНЕННЫХ РАБОТ",
   "responses": [
-    "{\"doc_type\": \"act\", \"supplier_name\": \"«Ақжол Транс» ЖШС\", \"supplier_bin\": \"060340015522\", \"doc_number\": \"12/А\", \"doc_date\": \"2026-09-21\", \"currency\": \"KZT\", \"total_amount\": 348000, \"vat_amount\": 48000, \"line_items\": [{\"name\": \"Жүк тасымалдау қызметі, Алматы – Шымкент / Услуги грузоперевозки\", \"qty\": 3, \"price\": 100000}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+    "{\"doc_type\":\"act\",\"supplier_name\":\"«Ақжол Транс» ЖШС\",\"supplier_bin\":\"060340015522\",\"doc_number\":\"12/А\",\"doc_date\":\"2026-09-21\",\"currency\":\"KZT\",\"total_amount\":348000,\"vat_amount\":48000,\"line_items\":[{\"name\":\"Жүк тасымалдау қызметі, Алматы – Шымкент / Услуги грузоперевозки\",\"qty\":3,\"price\":100000}],\"field_confidence\":{\"doc_type\":1,\"supplier_name\":1,\"supplier_bin\":1,\"doc_number\":1,\"doc_date\":1,\"currency\":1,\"total_amount\":1,\"vat_amount\":1},\"warnings\":[]}"
   ]
 }

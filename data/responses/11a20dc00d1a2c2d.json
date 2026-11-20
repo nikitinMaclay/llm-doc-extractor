@@ -1,7 +1,7 @@
 {
-  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "source": "openai:gpt-6-luna",
   "first_line": "ТОО «Жетісу Снаб»",
   "responses": [
-    "{\"doc_type\": \"invoice\", \"supplier_name\": \"ТОО «Жетісу Снаб»\", \"supplier_bin\": \"110940007788\", \"doc_number\": \"318\", \"doc_date\": \"2026-10-14\", \"currency\": \"KZT\", \"total_amount\": 284000, \"vat_amount\": null, \"line_items\": [{\"name\": \"Кабель ВВГ 3х2,5, м\", \"qty\": 400, \"price\": 320}, {\"name\": \"Автомат 16А\", \"qty\": 60, \"price\": 2000}], \"warnings\": [\"В документе две даты: 14.10.2026 в заголовке и 15.10.2026 как дата выставления; взята дата из заголовка\"], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.6, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+    "{\"doc_type\":\"invoice\",\"supplier_name\":\"ТОО «Жетісу Снаб»\",\"supplier_bin\":\"110940007788\",\"doc_number\":\"318\",\"doc_date\":\"2026-10-14\",\"currency\":\"KZT\",\"total_amount\":248000,\"vat_amount\":null,\"line_items\":[{\"name\":\"Кабель ВВГ 3х2,5, м\",\"qty\":400,\"price\":320},{\"name\":\"Автомат 16А\",\"qty\":60,\"price\":2000}],\"field_confidence\":{\"doc_type\":1,\"supplier_name\":1,\"supplier_bin\":1,\"doc_number\":1,\"doc_date\":0.9,\"currency\":1,\"total_amount\":0.9,\"vat_amount\":1},\"warnings\":[\"Указаны две даты выставления документа: 14.10.2026 в заголовке и 15.10.2026 отдельно; выбрана дата из заголовка.\",\"Указаны разные итоговые суммы: «Итого к оплате» 248 000 и «Всего к оплате» 284 000 тенге; выбрана сумма 248 000, соответствующая сумме позиций.\"]}"
   ]
 }

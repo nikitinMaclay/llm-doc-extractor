@@ -1,7 +1,7 @@
 {
-  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "source": "openai:gpt-6-luna",
   "first_line": "ТОО \"Алматы Трейд Компани\"",
   "responses": [
-    "{\"doc_type\": \"invoice\", \"supplier_name\": \"ТОО \\\"Алматы Трейд Компани\\\"\", \"supplier_bin\": \"170340021554\", \"doc_number\": \"1245\", \"doc_date\": \"2026-11-12\", \"currency\": \"KZT\", \"total_amount\": 186180, \"vat_amount\": 25680, \"line_items\": [{\"name\": \"Бумага А4 80г/м2\", \"qty\": 50, \"price\": 2100}, {\"name\": \"Картридж HP 85A\", \"qty\": 3, \"price\": 18500}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+    "{\n  \"doc_type\": \"invoice\",\n  \"supplier_name\": \"ТОО \\\"Алматы Трейд Компани\\\"\",\n  \"supplier_bin\": \"170340021554\",\n  \"doc_number\": \"1245\",\n  \"doc_date\": \"2026-11-12\",\n  \"currency\": \"KZT\",\n  \"total_amount\": 186180,\n  \"vat_amount\": 25680,\n  \"line_items\": [\n    {\n      \"name\": \"Бумага А4 80г/м2\",\n      \"qty\": 50,\n      \"price\": 2100\n    },\n    {\n      \"name\": \"Картридж HP 85A\",\n      \"qty\": 3,\n      \"price\": 18500\n    }\n  ],\n  \"field_confidence\": {\n    \"doc_type\": 1,\n    \"supplier_name\": 1,\n    \"supplier_bin\": 1,\n    \"doc_number\": 1,\n    \"doc_date\": 1,\n    \"currency\": 1,\n    \"total_amount\": 1,\n    \"vat_amount\": 1\n  },\n  \"warnings\": []\n}"
   ]
 }

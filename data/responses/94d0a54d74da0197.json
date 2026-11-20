@@ -1,7 +1,7 @@
 {
-  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "source": "openai:gpt-6-luna",
   "first_line": "ТОО «Азия Логистик»",
   "responses": [
-    "{\"doc_type\": \"invoice\", \"supplier_name\": \"ТОО «Азия Логистик»\", \"supplier_bin\": \"031140005671\", \"doc_number\": \"0087\", \"doc_date\": \"2026-10-23\", \"currency\": \"KZT\", \"total_amount\": 121800, \"vat_amount\": 16800, \"line_items\": [{\"name\": \"Доставка груза\", \"qty\": 4, \"price\": 22500}, {\"name\": \"Упаковка\", \"qty\": 10, \"price\": 1500}], \"warnings\": [\"Текст содержит ошибки распознавания, часть значений восстановлена\"], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.5, \"doc_number\": 0.95, \"doc_date\": 0.6, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.6}}"
+    "{\n  \"doc_type\": \"invoice\",\n  \"supplier_name\": \"ТОО «Азия Логистик»\",\n  \"supplier_bin\": null,\n  \"doc_number\": \"0087\",\n  \"doc_date\": null,\n  \"currency\": \"KZT\",\n  \"total_amount\": 121800,\n  \"vat_amount\": null,\n  \"line_items\": [\n    {\n      \"name\": \"Доставка груза\",\n      \"qty\": 4,\n      \"price\": 22500\n    },\n    {\n      \"name\": \"Упаковка\",\n      \"qty\": 10,\n      \"price\": 1500\n    }\n  ],\n  \"field_confidence\": {\n    \"doc_type\": 0.99,\n    \"supplier_name\": 0.99,\n    \"supplier_bin\": 0.99,\n    \"doc_number\": 0.99,\n    \"doc_date\": 0.99,\n    \"currency\": 0.98,\n    \"total_amount\": 0.99,\n    \"vat_amount\": 0.98\n  },\n  \"warnings\": [\n    \"БИН/БСН содержит буквы вместо цифр: «0З1140O05671»; значение не заполнено.\",\n    \"Дата документа повреждена OCR: «2З.1O.2026»; значение не заполнено.\",\n    \"Сумма НДС повреждена OCR: «1б 800»; значение не заполнено.\"\n  ]\n}"
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "source": "openai:gpt-6-luna",
   "first_line": "INVOICE",
   "responses": [
-    "{\"doc_type\": \"invoice\", \"supplier_name\": \"Caspian Software LLP\", \"supplier_bin\": \"990540003217\", \"doc_number\": \"INV-2026-0042\", \"doc_date\": \"2026-10-03\", \"currency\": \"USD\", \"total_amount\": 1250, \"vat_amount\": null, \"line_items\": [{\"name\": \"Annual software license\", \"qty\": 5, \"price\": 200}, {\"name\": \"Onboarding workshop\", \"qty\": 1, \"price\": 250}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+    "{\n  \"doc_type\": \"invoice\",\n  \"supplier_name\": \"Caspian Software LLP\",\n  \"supplier_bin\": \"990540003217\",\n  \"doc_number\": \"INV-2026-0042\",\n  \"doc_date\": \"2026-10-03\",\n  \"currency\": \"USD\",\n  \"total_amount\": 1250.0,\n  \"vat_amount\": null,\n  \"line_items\": [\n    {\n      \"name\": \"Annual software license\",\n      \"qty\": 5,\n      \"price\": 200.0\n    },\n    {\n      \"name\": \"Onboarding workshop\",\n      \"qty\": 1,\n      \"price\": 250.0\n    }\n  ],\n  \"field_confidence\": {\n    \"doc_type\": 1.0,\n    \"supplier_name\": 1.0,\n    \"supplier_bin\": 1.0,\n    \"doc_number\": 1.0,\n    \"doc_date\": 1.0,\n    \"currency\": 1.0,\n    \"total_amount\": 1.0,\n    \"vat_amount\": 1.0\n  },\n  \"warnings\": []\n}"
   ]
 }
