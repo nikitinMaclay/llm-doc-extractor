@@ -10,7 +10,7 @@ from extractor.prompt import SYSTEM_PROMPT
 from extractor.schema import Extraction
 
 DEFAULT_MODEL = "gpt-6-luna"
-RECORDED_DIR = Path(__file__).parent.parent / "data" / "recorded"
+RESPONSES_DIR = Path(__file__).parent.parent / "data" / "responses"
 
 
 class LLMError(Exception):
@@ -22,10 +22,10 @@ class LLMClient(Protocol):
         """Вернуть сырой ответ модели. feedback — текст ошибки валидации прошлой попытки."""
 
 
-def recording_path(document: str) -> Path:
-    """Файл записи определяется содержимым документа: изменился текст — нужна новая запись."""
+def response_path(document: str) -> Path:
+    """Файл с ответами определяется содержимым документа: изменился текст — нужен новый ответ."""
     digest = hashlib.sha256(document.encode("utf-8")).hexdigest()[:16]
-    return RECORDED_DIR / f"{digest}.json"
+    return RESPONSES_DIR / f"{digest}.json"
 
 
 class OpenAIClient:
@@ -75,30 +75,39 @@ class OpenAIClient:
         return raw
 
     def _save(self, document: str, raw: str, first_attempt: bool) -> None:
-        path = recording_path(document)
+        path = response_path(document)
         responses = [] if first_attempt else json.loads(path.read_text("utf-8"))["responses"]
         responses.append(raw)
-        RECORDED_DIR.mkdir(parents=True, exist_ok=True)
-        path.write_text(
-            json.dumps({"model": self.model, "responses": responses}, ensure_ascii=False, indent=2),
-            encoding="utf-8",
-        )
+        RESPONSES_DIR.mkdir(parents=True, exist_ok=True)
+        saved = {
+            "source": f"openai:{self.model}",
+            "first_line": document.strip().splitlines()[0],  # чтобы человек понял, чей это файл
+            "responses": responses,
+        }
+        path.write_text(json.dumps(saved, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 class ReplayClient:
-    """Замена вызова LLM: отдаёт сохранённые ответы настоящей модели. Работает без ключа и сети."""
+    """Замена вызова LLM: отдаёт ответы из data/responses. Работает без ключа и сети.
+
+    В файлах лежат либо ответы-заглушки, написанные вручную (source начинается с "mock"),
+    либо ответы настоящей модели, сохранённые командой make record (source "openai:...").
+    """
 
     def __init__(self):
         self.attempts: dict[Path, int] = {}  # сколько раз уже спрашивали по каждому документу
+        self.sources: set[str] = set()  # откуда взяты ответы — eval печатает это в отчёте
 
     def complete(self, document: str, feedback: str | None = None) -> str:
-        path = recording_path(document)
+        path = response_path(document)
         if not path.exists():
             raise LLMError(
-                "Для этого документа нет записанного ответа модели. "
+                "Для этого документа нет сохранённого ответа. "
                 "Задайте OPENAI_API_KEY и запустите с --llm openai."
             )
-        responses = json.loads(path.read_text("utf-8"))["responses"]
+        saved = json.loads(path.read_text("utf-8"))
+        self.sources.add(saved["source"])
+        responses = saved["responses"]
         attempt = self.attempts.get(path, 0)
         self.attempts[path] = attempt + 1
         return responses[min(attempt, len(responses) - 1)]

@@ -1,0 +1,8 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "АКТ ВЫПОЛНЕННЫХ РАБОТ № 57 от 30.09.2026",
+  "responses": [
+    "{\"doc_type\": \"act\", \"supplier_name\": \"ТОО «СтройСервис Астана»\", \"supplier_bin\": \"150840 012345\", \"doc_number\": \"57\", \"doc_date\": \"30.09.2026\", \"currency\": \"KZT\", \"total_amount\": 1000000, \"vat_amount\": 137931, \"line_items\": [{\"name\": \"Монтаж вентиляции, этаж\", \"qty\": 2, \"price\": 420000}, {\"name\": \"Пусконаладочные работы\", \"qty\": 1, \"price\": 160000}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}",
+    "{\"doc_type\": \"act\", \"supplier_name\": \"ТОО «СтройСервис Астана»\", \"supplier_bin\": \"150840012345\", \"doc_number\": \"57\", \"doc_date\": \"2026-09-30\", \"currency\": \"KZT\", \"total_amount\": 1000000, \"vat_amount\": 137931, \"line_items\": [{\"name\": \"Монтаж вентиляции, этаж\", \"qty\": 2, \"price\": 420000}, {\"name\": \"Пусконаладочные работы\", \"qty\": 1, \"price\": 160000}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+  ]
+}

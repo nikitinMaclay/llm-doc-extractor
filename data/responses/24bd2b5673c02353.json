@@ -1,0 +1,7 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "ТОО «ЕвроТех Казахстан»",
+  "responses": [
+    "{\"doc_type\": \"commercial_offer\", \"supplier_name\": \"ТОО «ЕвроТех Казахстан»\", \"supplier_bin\": \"200140033445\", \"doc_number\": \"КП-2026/118\", \"doc_date\": \"2026-11-02\", \"currency\": \"EUR\", \"total_amount\": 12400, \"vat_amount\": null, \"line_items\": [{\"name\": \"Станок лазерной резки LC-1530\", \"qty\": 1, \"price\": 11200}, {\"name\": \"Комплект расходных материалов\", \"qty\": 4, \"price\": 300}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+  ]
+}

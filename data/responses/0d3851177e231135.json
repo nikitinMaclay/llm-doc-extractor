@@ -1,0 +1,7 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "ИП Сериков А.Б.",
+  "responses": [
+    "{\"doc_type\": \"invoice\", \"supplier_name\": \"ИП Сериков А.Б.\", \"supplier_bin\": null, \"doc_number\": null, \"doc_date\": null, \"currency\": \"KZT\", \"total_amount\": 125000, \"vat_amount\": null, \"line_items\": [{\"name\": \"услуги по ремонту холодильного оборудования\", \"qty\": null, \"price\": null}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.4, \"currency\": 0.95, \"total_amount\": 0.8, \"vat_amount\": 0.95}}"
+  ]
+}

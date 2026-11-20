@@ -1,0 +1,7 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "ТОО «Азия Логистик»",
+  "responses": [
+    "{\"doc_type\": \"invoice\", \"supplier_name\": \"ТОО «Азия Логистик»\", \"supplier_bin\": \"031140005671\", \"doc_number\": \"0087\", \"doc_date\": \"2026-10-23\", \"currency\": \"KZT\", \"total_amount\": 121800, \"vat_amount\": 16800, \"line_items\": [{\"name\": \"Доставка груза\", \"qty\": 4, \"price\": 22500}, {\"name\": \"Упаковка\", \"qty\": 10, \"price\": 1500}], \"warnings\": [\"Текст содержит ошибки распознавания, часть значений восстановлена\"], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.5, \"doc_number\": 0.95, \"doc_date\": 0.6, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.6}}"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "ЖШС «Көкжиек Құрылыс» / ТОО \"Кокжиек Курылыс\"",
+  "responses": [
+    "{\"doc_type\": \"invoice\", \"supplier_name\": \"ЖШС «Көкжиек Құрылыс»\", \"supplier_bin\": \"210640900180\", \"doc_number\": \"AKT-09\", \"doc_date\": \"2026-10-09\", \"currency\": \"KZT\", \"total_amount\": 340000, \"vat_amount\": null, \"line_items\": [{\"name\": \"Қызмет көрсету / Оказание услуг\", \"qty\": 1, \"price\": 340000}], \"warnings\": [\"БИН распознан с ошибками OCR, восстановлен по похожим символам\"], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.6, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.95, \"vat_amount\": 0.95}}"
+  ]
+}

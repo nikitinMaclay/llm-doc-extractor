@@ -1,0 +1,7 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "Уважаемые арендаторы!",
+  "responses": [
+    "{\"doc_type\": \"unknown\", \"supplier_name\": null, \"supplier_bin\": null, \"doc_number\": null, \"doc_date\": null, \"currency\": null, \"total_amount\": null, \"vat_amount\": null, \"line_items\": [], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.9, \"supplier_name\": 0.9, \"supplier_bin\": 0.9, \"doc_number\": 0.9, \"doc_date\": 0.9, \"currency\": 0.9, \"total_amount\": 0.9, \"vat_amount\": 0.9}}"
+  ]
+}

@@ -89,3 +89,15 @@ def test_llm_failure_is_not_retried_and_gives_empty_result():
     assert not result.ok and result.attempts == 1
     assert len(llm.answers) == 1  # второй ответ не запрашивали
     assert "сеть недоступна" in result.extraction.warnings[0]
+
+
+def test_schema_sent_to_the_model_meets_strict_mode_requirements():
+    """Structured Outputs в режиме strict требует: все поля обязательны, лишние запрещены."""
+    from extractor.schema import Extraction
+
+    schema = Extraction.model_json_schema()
+    objects = [schema, *schema["$defs"].values()]
+
+    for obj in objects:
+        assert obj["additionalProperties"] is False
+        assert sorted(obj["required"]) == sorted(obj["properties"])

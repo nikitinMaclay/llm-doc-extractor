@@ -1,6 +1,6 @@
 """Мини-eval: прогоняет все документы из data/docs и сравнивает результат с эталонами из data/gold.
 
-    python eval.py                 # записанные ответы модели, ключ не нужен
+    python eval.py                 # ответы из data/responses, ключ не нужен
     python eval.py --llm openai    # настоящая модель (нужен OPENAI_API_KEY)
 """
 
@@ -76,6 +76,7 @@ def run(llm_mode: str, record: bool) -> int:
     outcomes = {field: [] for field in FIELDS}  # поле → список исходов по документам
     mistakes: list[str] = []
     failed: list[str] = []
+    retried: list[str] = []
     warned_when_needed = warnings_needed = false_alarms = 0
 
     doc_paths = sorted((DATA / "docs").glob("*.txt"))
@@ -85,6 +86,8 @@ def run(llm_mode: str, record: bool) -> int:
         predicted = result.extraction.model_dump(mode="json")
         if not result.ok:
             failed.append(f"{doc_path.stem}: {'; '.join(result.errors)}")
+        elif result.attempts > 1:
+            retried.append(f"{doc_path.stem}: {'; '.join(result.errors)}")
 
         for field in FIELDS:
             outcome = compare(field, predicted[field], expected[field])
@@ -103,7 +106,12 @@ def run(llm_mode: str, record: bool) -> int:
             false_alarms += bool(predicted["warnings"])
 
     total_docs = len(doc_paths)
-    print(f"Документов: {total_docs} · режим LLM: {llm_mode} · не прошли валидацию: {len(failed)}")
+    sources = ", ".join(sorted(getattr(llm, "sources", []))) or "настоящая модель"
+    print(f"Документов: {total_docs} · режим LLM: {llm_mode} · источник ответов: {sources}")
+    print(f"Прошли валидацию со второй попытки: {len(retried)}")
+    for line in retried:
+        print(f"  {line}")
+    print(f"Не прошли валидацию (результат пустой): {len(failed)}")
     for line in failed:
         print(f"  {line}")
 
@@ -130,7 +138,7 @@ def run(llm_mode: str, record: bool) -> int:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Прогон тестового набора и отчёт по качеству.")
     parser.add_argument("--llm", choices=["replay", "openai"], default="replay")
-    parser.add_argument("--record", action="store_true", help="сохранить ответы модели в data/recorded (с --llm openai)")
+    parser.add_argument("--record", action="store_true", help="сохранить ответы модели в data/responses (с --llm openai)")
     args = parser.parse_args()
     try:
         sys.exit(run(args.llm, args.record))

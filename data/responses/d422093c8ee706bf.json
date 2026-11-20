@@ -1,0 +1,7 @@
+{
+  "source": "mock: ответ-заглушка, написан вручную, не настоящая модель",
+  "first_line": "Коммерческое предложение",
+  "responses": [
+    "{\"doc_type\": \"commercial_offer\", \"supplier_name\": \"«Digital Solutions»\", \"supplier_bin\": null, \"doc_number\": null, \"doc_date\": \"2026-11-05\", \"currency\": \"KZT\", \"total_amount\": 510000, \"vat_amount\": null, \"line_items\": [{\"name\": \"Разработка сайта\", \"qty\": null, \"price\": 450000}, {\"name\": \"Техподдержка, в месяц\", \"qty\": null, \"price\": 60000}], \"warnings\": [], \"field_confidence\": {\"doc_type\": 0.95, \"supplier_name\": 0.95, \"supplier_bin\": 0.95, \"doc_number\": 0.95, \"doc_date\": 0.95, \"currency\": 0.95, \"total_amount\": 0.7, \"vat_amount\": 0.95}}"
+  ]
+}
