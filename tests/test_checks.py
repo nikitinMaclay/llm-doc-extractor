@@ -1,5 +1,3 @@
-"""Проверки по тексту: значение, которого нет в документе, не проходит, даже если схема довольна."""
-
 from extractor.checks import LOW_CONFIDENCE, apply_checks
 from extractor.schema import Extraction
 from tests.test_pipeline import DOCUMENT, VALID
@@ -24,7 +22,7 @@ def test_bin_absent_from_document_is_removed():
 
 
 def test_bin_repaired_from_ocr_garbage_is_removed():
-    document = DOCUMENT.replace("170340021554", "2l064090Ol80")  # в тексте буквы вместо цифр
+    document = DOCUMENT.replace("170340021554", "2l064090Ol80")
 
     assert checked(document, supplier_bin="210640900180").supplier_bin is None
 
@@ -36,7 +34,6 @@ def test_bin_inside_a_longer_number_does_not_count():
 
 
 def test_computed_vat_is_removed():
-    # 16% от 1000 = 160, но в документе суммы НДС нет
     result = checked(DOCUMENT, vat_amount=160)
 
     assert result.vat_amount is None
@@ -82,18 +79,18 @@ def test_total_written_only_in_words_is_kept_but_flagged():
 
     result = checked(document)
 
-    assert result.total_amount == 1000  # не обнуляем
+    assert result.total_amount == 1000
     assert result.field_confidence.total_amount <= LOW_CONFIDENCE
     assert "прописью" in result.warnings[0]
 
 
 def test_total_that_does_not_match_line_items_is_flagged():
-    items = [{"name": "Бумага", "qty": 2, "price": 400}]  # 800, а итог 1000
+    items = [{"name": "Бумага", "qty": 2, "price": 400}]
 
     mismatch = checked(DOCUMENT, line_items=items)
     with_vat_on_top = checked(DOCUMENT + "\nНДС: 200", line_items=items, vat_amount=200)
     no_quantities = checked(DOCUMENT, line_items=[{"name": "Услуга", "qty": None, "price": 400}])
 
     assert "не сходится" in mismatch.warnings[0]
-    assert with_vat_on_top.warnings == []  # 800 + 200 = 1000
-    assert no_quantities.warnings == []  # проверить нечем — молчим
+    assert with_vat_on_top.warnings == []
+    assert no_quantities.warnings == []

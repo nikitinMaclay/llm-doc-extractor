@@ -1,11 +1,8 @@
-"""Фиксированная схема результата. Всё, что возвращает сервис, проходит через эти классы."""
-
 from datetime import date
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-# Скалярные поля, которые извлекаются из документа (для каждого есть уверенность и метрики в eval).
 SCALAR_FIELDS = [
     "doc_type",
     "supplier_name",
@@ -17,11 +14,10 @@ SCALAR_FIELDS = [
     "vat_amount",
 ]
 
-Confidence = float  # число от 0.0 до 1.0, границы заданы в FieldConfidence
+Confidence = float
 
 
 class Strict(BaseModel):
-    # extra="forbid": лишнее поле в ответе модели — ошибка валидации, а не молча отброшенные данные.
     model_config = ConfigDict(extra="forbid")
 
 
@@ -43,12 +39,11 @@ class FieldConfidence(Strict):
 
 
 class Extraction(Strict):
-    # Ни у одного поля нет значения по умолчанию: модель обязана явно написать null.
     doc_type: Literal["invoice", "commercial_offer", "act", "unknown"]
     supplier_name: str | None
     supplier_bin: str | None = Field(pattern=r"^\d{12}$")
     doc_number: str | None
-    doc_date: date | None  # в JSON — строка YYYY-MM-DD
+    doc_date: date | None
     currency: Literal["KZT", "USD", "EUR"] | None
     total_amount: float | None = Field(ge=0)
     vat_amount: float | None = Field(ge=0)
@@ -58,7 +53,6 @@ class Extraction(Strict):
 
 
 def empty_extraction(warning: str) -> Extraction:
-    """Безопасный результат, когда ответ модели принять нельзя: ничего не утверждаем."""
     return Extraction(
         doc_type="unknown",
         supplier_name=None,

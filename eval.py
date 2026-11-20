@@ -1,9 +1,3 @@
-"""Мини-eval: прогоняет все документы из data/docs и сравнивает результат с эталонами из data/gold.
-
-    python eval.py                 # ответы из data/responses, ключ не нужен
-    python eval.py --llm openai    # настоящая модель (нужен OPENAI_API_KEY)
-"""
-
 import argparse
 import json
 import re
@@ -17,12 +11,10 @@ from extractor.schema import SCALAR_FIELDS
 DATA = Path(__file__).parent / "data"
 FIELDS = SCALAR_FIELDS + ["line_items"]
 
-# Четыре исхода сравнения одного поля. Галлюцинация и пропуск считаются раздельно:
-# выдуманный БИН уходит в оплату, а пропущенный всего лишь отправляет документ человеку.
 CORRECT = "верно"
-HALLUCINATION = "галлюцинация"  # поле заполнено, хотя в эталоне null
-OMISSION = "пропуск"  # null, хотя в эталоне есть значение
-WRONG = "неверное значение"  # заполнено и там и там, но по-разному
+HALLUCINATION = "галлюцинация"
+OMISSION = "пропуск"
+WRONG = "неверное значение"
 
 
 def compare(field: str, predicted, expected) -> str:
@@ -59,21 +51,19 @@ def _same_number(a, b) -> bool:
 
 
 def _normalize(text: str) -> str:
-    """Без регистра, кавычек и лишних пробелов; ё = е."""
     text = text.casefold().replace("ё", "е")
     text = re.sub(r"[«»\"“”„']", "", text)
     return re.sub(r"\s+", " ", text).strip()
 
 
 def _same_item_name(predicted: str, expected: str) -> bool:
-    """Название позиции совпадает, если одно содержит другое («Услуги…» и «За услуги…»)."""
     a, b = _normalize(predicted), _normalize(expected)
     return a in b or b in a
 
 
 def run(llm_mode: str, record: bool) -> int:
     llm = make_client(llm_mode, record=record)
-    outcomes = {field: [] for field in FIELDS}  # поле → список исходов по документам
+    outcomes = {field: [] for field in FIELDS}
     mistakes: list[str] = []
     failed: list[str] = []
     retried: list[str] = []

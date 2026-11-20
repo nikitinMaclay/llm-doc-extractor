@@ -1,5 +1,3 @@
-"""Что делает система, когда ответ модели не проходит валидацию. LLM заменён заготовленными ответами."""
-
 import json
 
 from extractor.llm import LLMError
@@ -26,8 +24,6 @@ VALID = {
 
 
 class ScriptedLLM:
-    """Отдаёт заранее заданные ответы по очереди и запоминает, с какой подсказкой его вызывали."""
-
     def __init__(self, *answers):
         self.answers = list(answers)
         self.feedbacks = []
@@ -49,7 +45,7 @@ def test_valid_answer_is_accepted_on_first_attempt():
 
 
 def test_invalid_answer_is_retried_with_the_validation_error_as_feedback():
-    bad = {**VALID, "supplier_bin": "17034002", "doc_date": "12.11.2026"}  # 8 цифр и не тот формат даты
+    bad = {**VALID, "supplier_bin": "17034002", "doc_date": "12.11.2026"}
     llm = ScriptedLLM(bad, VALID)
 
     result = extract(DOCUMENT, llm)
@@ -68,7 +64,7 @@ def test_two_invalid_answers_give_empty_result_not_garbage():
     assert empty.doc_type == "unknown"
     assert empty.supplier_bin is None and empty.total_amount is None and empty.line_items == []
     assert "ручной разбор" in empty.warnings[0]
-    assert len(result.errors) == 2  # причина каждой неудачной попытки сохранена
+    assert len(result.errors) == 2
 
 
 def test_missing_or_extra_field_is_a_validation_error():
@@ -87,12 +83,11 @@ def test_llm_failure_is_not_retried_and_gives_empty_result():
     result = extract(DOCUMENT, llm)
 
     assert not result.ok and result.attempts == 1
-    assert len(llm.answers) == 1  # второй ответ не запрашивали
+    assert len(llm.answers) == 1
     assert "сеть недоступна" in result.extraction.warnings[0]
 
 
 def test_schema_sent_to_the_model_meets_strict_mode_requirements():
-    """Structured Outputs в режиме strict требует: все поля обязательны, лишние запрещены."""
     from extractor.schema import Extraction
 
     schema = Extraction.model_json_schema()

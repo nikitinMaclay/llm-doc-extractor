@@ -1,5 +1,3 @@
-"""CLI: python -m extractor путь/к/документу.txt  (или текст через stdin)."""
-
 import argparse
 import os
 import sys
@@ -31,10 +29,10 @@ def main() -> int:
         print(error, file=sys.stderr)
         return 2
 
-    print(result.extraction.model_dump_json(indent=2))  # в stdout — только JSON по схеме
+    print(result.extraction.model_dump_json(indent=2))
     for error in result.errors:
         print(error, file=sys.stderr)
-    return 0 if result.ok else 2  # код 2: результат пустой, документ нужно разобрать вручную
+    return 0 if result.ok else 2
 
 
 if __name__ == "__main__":

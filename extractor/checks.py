@@ -1,9 +1,3 @@
-"""Проверки ответа модели по тексту документа — обычный код, без LLM.
-
-Схема гарантирует форму ответа, но не то, что значение взято из документа. Здесь каждое поле
-сверяется с текстом: чего в тексте нет — обнуляется (или помечается) с предупреждением.
-"""
-
 import re
 
 from extractor.schema import Extraction
@@ -17,12 +11,10 @@ CURRENCY_MARKERS = {
 }
 
 
-# Латинские буквы, которые OCR путает с кириллическими (текст уже в нижнем регистре).
 LATIN_TO_CYRILLIC = str.maketrans("aeopcxyk", "аеорсхук")
 
 
 def apply_checks(extraction: Extraction, document: str) -> Extraction:
-    """Вернуть копию результата, в которой не подтверждённые текстом значения убраны или помечены."""
     result = extraction.model_copy(deep=True)
     text = document.casefold()
     digits_text = _join_digit_groups(text)
@@ -40,7 +32,6 @@ def apply_checks(extraction: Extraction, document: str) -> Extraction:
 
     if result.doc_date:
         day, year = result.doc_date.day, result.doc_date.year
-        # Месяц не проверяем: он бывает записан словом на двух языках.
         if str(year) not in text or not re.search(rf"(?<!\d)0?{day}(?!\d)", text):
             reject("doc_date", "числа и года этой даты в документе нет")
 
@@ -49,7 +40,6 @@ def apply_checks(extraction: Extraction, document: str) -> Extraction:
         if not any(word in text for word in words):
             reject("supplier_name", "такого названия в документе нет")
 
-    # Ищем и в тексте после замены похожих латинских букв: OCR пишет «тeнгe» с латинской e.
     marker = CURRENCY_MARKERS.get(result.currency or "")
     if marker and not re.search(marker, text) and not re.search(marker, text.translate(LATIN_TO_CYRILLIC)):
         reject("currency", "валюта в документе не названа")
@@ -58,7 +48,6 @@ def apply_checks(extraction: Extraction, document: str) -> Extraction:
         reject("vat_amount", "такой суммы в документе нет, НДС нельзя вычислять")
 
     if result.total_amount is not None and not _amount_in_text(result.total_amount, digits_text):
-        # Не обнуляем: сумма может быть написана только прописью. Но доверять ей меньше.
         _flag(
             result,
             "total_amount",
@@ -77,14 +66,13 @@ def _flag(result: Extraction, field: str, warning: str) -> None:
 
 
 def _check_arithmetic(result: Extraction) -> None:
-    """Если у всех позиций есть количество и цена, итог должен сходиться с их суммой."""
     items = result.line_items
     if result.total_amount is None or not items:
         return
     if any(item.qty is None or item.price is None for item in items):
         return
     items_sum = sum(item.qty * item.price for item in items)
-    allowed = [items_sum, items_sum + (result.vat_amount or 0)]  # НДС в цене или сверху
+    allowed = [items_sum, items_sum + (result.vat_amount or 0)]
     if not any(abs(result.total_amount - value) < 1 for value in allowed):
         _flag(
             result,
@@ -94,18 +82,15 @@ def _check_arithmetic(result: Extraction) -> None:
 
 
 def _squash(value: str) -> str:
-    """Убрать пробелы и регистр: «AKT - 09» и «akt-09» считаются одним номером."""
     return re.sub(r"\s+", "", value.casefold())
 
 
 def _join_digit_groups(text: str) -> str:
-    """«186 180» → «186180», «1,250.00» → «1250.00»: убрать разделители тысяч между цифрами."""
     text = re.sub(r"(?<=\d)[   ](?=\d)", "", text)
     return re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", text)
 
 
 def _amount_in_text(amount: float, digits_text: str) -> bool:
-    """Есть ли число в тексте в любой обычной записи: 12400.5 → «12400.5», «12400,50» и т.д."""
     if amount == int(amount):
         forms = [str(int(amount))]
     else:
