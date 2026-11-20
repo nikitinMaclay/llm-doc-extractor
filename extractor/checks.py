@@ -17,6 +17,10 @@ CURRENCY_MARKERS = {
 }
 
 
+# Латинские буквы, которые OCR путает с кириллическими (текст уже в нижнем регистре).
+LATIN_TO_CYRILLIC = str.maketrans("aeopcxyk", "аеорсхук")
+
+
 def apply_checks(extraction: Extraction, document: str) -> Extraction:
     """Вернуть копию результата, в которой не подтверждённые текстом значения убраны или помечены."""
     result = extraction.model_copy(deep=True)
@@ -45,7 +49,9 @@ def apply_checks(extraction: Extraction, document: str) -> Extraction:
         if not any(word in text for word in words):
             reject("supplier_name", "такого названия в документе нет")
 
-    if result.currency and not re.search(CURRENCY_MARKERS[result.currency], text):
+    # Ищем и в тексте после замены похожих латинских букв: OCR пишет «тeнгe» с латинской e.
+    marker = CURRENCY_MARKERS.get(result.currency or "")
+    if marker and not re.search(marker, text) and not re.search(marker, text.translate(LATIN_TO_CYRILLIC)):
         reject("currency", "валюта в документе не названа")
 
     if result.vat_amount is not None and not _amount_in_text(result.vat_amount, digits_text):
