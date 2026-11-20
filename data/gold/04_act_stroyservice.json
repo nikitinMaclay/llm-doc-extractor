@@ -1,0 +1,23 @@
+{
+  "doc_type": "act",
+  "supplier_name": "ТОО «СтройСервис Астана»",
+  "supplier_bin": "150840012345",
+  "doc_number": "57",
+  "doc_date": "2026-09-30",
+  "currency": "KZT",
+  "total_amount": 1000000,
+  "vat_amount": 137931,
+  "line_items": [
+    {
+      "name": "Монтаж вентиляции, этаж",
+      "qty": 2,
+      "price": 420000
+    },
+    {
+      "name": "Пусконаладочные работы",
+      "qty": 1,
+      "price": 160000
+    }
+  ],
+  "warnings": []
+}

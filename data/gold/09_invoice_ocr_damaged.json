@@ -1,0 +1,27 @@
+{
+  "doc_type": "invoice",
+  "supplier_name": "ТОО «Азия Логистик»",
+  "supplier_bin": null,
+  "doc_number": "0087",
+  "doc_date": null,
+  "currency": "KZT",
+  "total_amount": 121800,
+  "vat_amount": null,
+  "line_items": [
+    {
+      "name": "Доставка груза",
+      "qty": 4,
+      "price": 22500
+    },
+    {
+      "name": "Упаковка",
+      "qty": 10,
+      "price": 1500
+    }
+  ],
+  "warnings": [
+    "БИН повреждён OCR",
+    "Дата повреждена OCR",
+    "Сумма НДС повреждена OCR"
+  ]
+}

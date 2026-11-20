@@ -1,0 +1,26 @@
+{
+  "doc_type": "invoice",
+  "supplier_name": "ТОО «Жетісу Снаб»",
+  "supplier_bin": "110940007788",
+  "doc_number": "318",
+  "doc_date": "2026-10-14",
+  "currency": "KZT",
+  "total_amount": 248000,
+  "vat_amount": null,
+  "line_items": [
+    {
+      "name": "Кабель ВВГ 3х2,5, м",
+      "qty": 400,
+      "price": 320
+    },
+    {
+      "name": "Автомат 16А",
+      "qty": 60,
+      "price": 2000
+    }
+  ],
+  "warnings": [
+    "Две даты документа: 14.10.2026 и 15.10.2026",
+    "Две итоговые суммы: 248 000 и 284 000"
+  ]
+}

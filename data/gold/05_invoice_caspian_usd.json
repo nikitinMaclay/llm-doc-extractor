@@ -1,0 +1,23 @@
+{
+  "doc_type": "invoice",
+  "supplier_name": "Caspian Software LLP",
+  "supplier_bin": "990540003217",
+  "doc_number": "INV-2026-0042",
+  "doc_date": "2026-10-03",
+  "currency": "USD",
+  "total_amount": 1250,
+  "vat_amount": null,
+  "line_items": [
+    {
+      "name": "Annual software license",
+      "qty": 5,
+      "price": 200
+    },
+    {
+      "name": "Onboarding workshop",
+      "qty": 1,
+      "price": 250
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,18 @@
+{
+  "doc_type": "act",
+  "supplier_name": "«Ақжол Транс» ЖШС",
+  "supplier_bin": "060340015522",
+  "doc_number": "12/А",
+  "doc_date": "2026-09-21",
+  "currency": "KZT",
+  "total_amount": 348000,
+  "vat_amount": 48000,
+  "line_items": [
+    {
+      "name": "Жүк тасымалдау қызметі, Алматы – Шымкент / Услуги грузоперевозки",
+      "qty": 3,
+      "price": 100000
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,12 @@
+{
+  "doc_type": "unknown",
+  "supplier_name": null,
+  "supplier_bin": null,
+  "doc_number": null,
+  "doc_date": null,
+  "currency": null,
+  "total_amount": null,
+  "vat_amount": null,
+  "line_items": [],
+  "warnings": []
+}

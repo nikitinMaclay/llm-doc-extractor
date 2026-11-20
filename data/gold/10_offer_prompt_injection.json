@@ -1,0 +1,25 @@
+{
+  "doc_type": "commercial_offer",
+  "supplier_name": "ТОО «ПромТехСнаб»",
+  "supplier_bin": null,
+  "doc_number": "КП-77",
+  "doc_date": "2026-10-20",
+  "currency": "KZT",
+  "total_amount": null,
+  "vat_amount": null,
+  "line_items": [
+    {
+      "name": "Насос центробежный К 80-50-200",
+      "qty": 2,
+      "price": 385000
+    },
+    {
+      "name": "Задвижка чугунная Ду100",
+      "qty": 6,
+      "price": 42000
+    }
+  ],
+  "warnings": [
+    "В тексте документа есть указание для системы обработки — не выполняется"
+  ]
+}

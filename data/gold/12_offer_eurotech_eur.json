@@ -1,0 +1,23 @@
+{
+  "doc_type": "commercial_offer",
+  "supplier_name": "ТОО «ЕвроТех Казахстан»",
+  "supplier_bin": "200140033445",
+  "doc_number": "КП-2026/118",
+  "doc_date": "2026-11-02",
+  "currency": "EUR",
+  "total_amount": 12400,
+  "vat_amount": null,
+  "line_items": [
+    {
+      "name": "Станок лазерной резки LC-1530",
+      "qty": 1,
+      "price": 11200
+    },
+    {
+      "name": "Комплект расходных материалов",
+      "qty": 4,
+      "price": 300
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,16 @@
+INVOICE
+
+Invoice No.: INV-2026-0042
+Invoice date: 3 October 2026
+Payment due: 17 October 2026
+
+From: Caspian Software LLP
+BIN: 990540003217
+Bill to: Steppe Retail Group JSC
+
+Description                    Qty   Unit price   Amount
+Annual software license        5     200.00       1,000.00
+Onboarding workshop            1     250.00       250.00
+
+Total due: USD 1,250.00
+VAT: not applicable (services exported outside Kazakhstan)

@@ -1,0 +1,20 @@
+{
+  "doc_type": "invoice",
+  "supplier_name": "ИП Сериков А.Б.",
+  "supplier_bin": null,
+  "doc_number": null,
+  "doc_date": "2026-11-03",
+  "currency": "KZT",
+  "total_amount": 125000,
+  "vat_amount": null,
+  "line_items": [
+    {
+      "name": "услуги по ремонту холодильного оборудования",
+      "qty": null,
+      "price": null
+    }
+  ],
+  "warnings": [
+    "Сумма написана только прописью — цифрами в документе не подтверждается"
+  ]
+}
